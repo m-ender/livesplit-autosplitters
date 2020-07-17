@@ -1,0 +1,1 @@
+# livesplit-autosplitters
