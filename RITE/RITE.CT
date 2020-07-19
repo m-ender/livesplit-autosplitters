@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="31">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"Level + 13"</Description>
+      <LastState Value="14" RealAddress="00AC2DB8"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>RITE.exe+6C2DB8</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"Menu indicator"</Description>
+      <LastState Value="00" RealAddress="00AC5160"/>
+      <ShowAsHex>1</ShowAsHex>
+      <VariableType>Byte</VariableType>
+      <Address>RITE.exe+6C5160</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"Alternative menu indicator"</Description>
+      <LastState Value="00781B70" RealAddress="00AC5168"/>
+      <ShowAsHex>1</ShowAsHex>
+      <VariableType>4 Bytes</VariableType>
+      <Address>RITE.exe+6C5168</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"Pause menu"</Description>
+      <LastState Value="257" RealAddress="007FEA04"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>RITE.exe+3FEA04</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>11</ID>
+      <Description>"Not in pause menu"</Description>
+      <LastState Value="1" RealAddress="007FEA04"/>
+      <VariableType>Byte</VariableType>
+      <Address>007FEA04</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>12</ID>
+      <Description>"Control scheme?"</Description>
+      <LastState Value="0000211A" RealAddress="00881C2C"/>
+      <ShowAsHex>1</ShowAsHex>
+      <VariableType>4 Bytes</VariableType>
+      <Address>RITE.exe+481C2C</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>15</ID>
+      <Description>"P -&gt; Death animation 1"</Description>
+      <LastState Value="0" RealAddress="040269C0"/>
+      <VariableType>Byte</VariableType>
+      <Address>RITE.exe+4B0958</Address>
+      <Offsets>
+        <Offset>40</Offset>
+        <Offset>C</Offset>
+        <Offset>78</Offset>
+        <Offset>0</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>16</ID>
+      <Description>"P -&gt; Death animation 2"</Description>
+      <LastState Value="0" RealAddress="040269CC"/>
+      <VariableType>Byte</VariableType>
+      <Address>RITE.exe+4B0958</Address>
+      <Offsets>
+        <Offset>4C</Offset>
+        <Offset>C</Offset>
+        <Offset>78</Offset>
+        <Offset>0</Offset>
+      </Offsets>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <Comments>Info about this table:
+</Comments>
+</CheatTable>
