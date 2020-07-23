@@ -20,6 +20,7 @@ startup
     settings.Add("startOnEnteringLevel", false, "Start when entering a level");
     settings.Add("startOnSpawning", true, "Start when spawning");
     settings.Add("splitOnEnteringLevel", false, "Split when entering a level");
+    settings.Add("splitOnSpawning", false, "Split when spawning");
     settings.Add("splitOnLevelComplete", false, "Split when completing a level");
     settings.Add("splitOnWorldComplete", true, "Split when completing the last level of a world");
     settings.Add("resetOnWorld1Menu", false, "Reset when entering the world 1 level select");
@@ -41,7 +42,7 @@ init
         break;
     }
 
-    vars.isDead = true;
+    current.isDead = true;
 }
 
 exit
@@ -55,10 +56,10 @@ update
         return false;
 
     if (current.isDying && !old.isDying)
-        vars.isDead = true;
+        current.isDead = true;
 
-    if (vars.isDead && !current.menuActive && old.menuActive)
-        vars.isDead = false;
+    if (current.isDead && !current.menuActive && old.menuActive)
+        current.isDead = false;
 }
 
 start
@@ -82,12 +83,17 @@ split
         && current.menuActive 
         && !old.menuActive 
         && current.notPaused
-        && !vars.isDead;
+        && !current.isDead;
 
     bool lastLevelInWorld = current.level % 32 == 13;
 
     if (settings["splitOnEnteringLevel"] 
         && current.level > 13 && current.level != old.level)
+    {
+        return true;
+    }
+    if (settings["splitOnSpawning"]
+        && old.menuActive && !current.menuActive && !old.isDead)
     {
         return true;
     }
