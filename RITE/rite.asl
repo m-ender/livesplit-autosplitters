@@ -63,13 +63,15 @@ update
 
 start
 {
-    if (settings["startOnEnteringLevel"])
+    if (settings["startOnEnteringLevel"]
+        && current.level > 13 && current.level != old.level)
     {
-        return current.level > 13 && current.level != old.level;
+        return true;
     }
-    if (settings["startOnSpawning"])
+    if (settings["startOnSpawning"]
+        && old.menuActive && !current.menuActive)
     {
-        return old.menuActive && !current.menuActive;
+        return true;
     }
 }
 
@@ -82,26 +84,32 @@ split
         && current.notPaused
         && !vars.isDead;
 
-    if (settings["splitOnEnteringLevel"])
+    bool lastLevelInWorld = current.level % 32 == 13;
+
+    if (settings["splitOnEnteringLevel"] 
+        && current.level > 13 && current.level != old.level)
     {
-        return current.level > 13 && current.level != old.level;
+        return true;
     }
-    if (settings["splitOnLevelComplete"])
+    if (settings["splitOnLevelComplete"]
+        && justOpenedDoorMenu)
     {
-        return justOpenedDoorMenu;
+        return true;
     }
-    if (settings["splitOnWorldComplete"])
+    if (settings["splitOnWorldComplete"]
+        && justOpenedDoorMenu && lastLevelInWorld)
     {
-        bool lastLevelInWorld = current.level % 32 == 13;
-        return justOpenedDoorMenu && lastLevelInWorld;
+        return true;
     }
 }
 
 reset
 {
-    if (settings["resetOnWorld1Menu"])
-        return current.level == 5 && old.level != current.level;
+    if (settings["resetOnWorld1Menu"]
+        && current.level == 5 && old.level != current.level)
+        return true;
 
-    if (settings["resetOnDeath"])
-        return current.isDying && !old.isDying;
+    if (settings["resetOnDeath"]
+        && current.isDying && !old.isDying)
+        return true;
 }
