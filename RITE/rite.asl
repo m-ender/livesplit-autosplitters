@@ -15,6 +15,23 @@ state("RITE", "Patch 01 (Steam)")
     bool isDying : "RITE.exe", 0x4B0958, 0x0, 0x78, 0xC, 0x40;
 }
 
+state("RITE", "Patch 02 (Steam)")
+{
+    // The screen number. Splash screen, main menu, credits, each world etc all have
+    // separate numbers. The levels start at 14 and appear to be all consecutively
+    // numbered, so we can obtain the current level by subtracting 13 from this.
+    int level : "RITE.exe", 0x6C2DB8;
+    // This is true on any screen where the player can't control the Nim, i.e. pause
+    // menu, door menu, level select, main menu etc. It's also briefly true while
+    // the menu background comes up during resets.
+    bool menuActive : "RITE.exe", 0x6C5160;
+    // This is only 0 while the pause menu is open, and 1 otherwise.
+    bool notPaused : "RITE.exe", 0x3FEA04;
+    // This is only true during the death animation. Adding C  to the final offset 
+    // gives another such byte.
+    bool isDying : "RITE.exe", 0x4B0958, 0x0, 0x78, 0xC, 0x40;
+}
+
 startup
 {
     settings.Add("startOnEnteringLevel", false, "Start when entering a level");
@@ -35,13 +52,14 @@ startup
 init
 {
     int moduleSize = modules.First().ModuleMemorySize;
+    // TODO: distinguish between patch 01 and 02? Module size is the same.
     switch (moduleSize)
     {
     case 7593984:
-        version = "Patch 01 (Steam)";
+        version = "Patch 02 (Steam)";
         break;
     }
-
+ 
     current.isDead = true;
 }
 
@@ -54,6 +72,11 @@ update
 {
     if (version == "")
         return false;
+
+    // TODO: Is there a cleaner way to store persistent state? Vars maybe?
+    current.isDead = ((IDictionary<String, object>)old).ContainsKey("isDead") 
+        ? old.isDead 
+        : true;
 
     if (current.isDying && !old.isDying)
         current.isDead = true;
@@ -70,7 +93,7 @@ start
         return true;
     }
     if (settings["startOnSpawning"]
-        && old.menuActive && !current.menuActive)
+        && current.level > 13 && old.menuActive && !current.menuActive)
     {
         return true;
     }
