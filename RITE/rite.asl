@@ -30,6 +30,9 @@ state("RITE", "Patch 02 (Steam)")
     // This is only true during the death animation. Adding C  to the final offset 
     // gives another such byte.
     bool isDying : "RITE.exe", 0x4B0958, 0x0, 0x78, 0xC, 0x40;
+    // This is true while the timer is running (in particular, it's false before spawning,
+    // during the pause menu, while dying, and after touching the door).
+    bool timerRunning: "RITE.exe", 0x4B0958, 0x0, 0x58, 0xC, 0x40;
 }
 
 startup
@@ -87,13 +90,20 @@ update
 
 start
 {
+    bool timerStarted = 
+        current.level > 13
+        && current.timerRunning 
+        && !old.timerRunning
+        && old.notPaused;
+
     if (settings["startOnEnteringLevel"]
         && current.level > 13 && current.level != old.level)
     {
         return true;
     }
+
     if (settings["startOnSpawning"]
-        && current.level > 13 && old.menuActive && !current.menuActive)
+        && timerStarted)
     {
         return true;
     }
@@ -101,33 +111,42 @@ start
 
 split
 {
-    bool justOpenedDoorMenu = 
+    bool timerStarted = 
         current.level > 13
-        && current.menuActive 
-        && !old.menuActive 
-        && current.notPaused
-        && !current.isDead;
+        && current.timerRunning 
+        && !old.timerRunning
+        && old.notPaused;
+
+    bool timerStopped = 
+        current.level > 13
+        && !current.timerRunning 
+        && old.timerRunning
+        && current.notPaused;
 
     bool lastLevelInWorld = current.level % 32 == 13;
 
     if (settings["splitOnEnteringLevel"] 
         && current.level > 13 && current.level != old.level)
     {
+        vars.DebugOutput("Splitting on entry");
         return true;
     }
     if (settings["splitOnSpawning"]
-        && old.menuActive && !current.menuActive && !old.isDead)
+        && timerStarted)
     {
+        vars.DebugOutput("Splitting on spawn");
         return true;
     }
     if (settings["splitOnLevelComplete"]
-        && justOpenedDoorMenu)
+        && timerStopped && !current.isDead)
     {
+        vars.DebugOutput("Splitting on level complete");
         return true;
     }
     if (settings["splitOnWorldComplete"]
-        && justOpenedDoorMenu && lastLevelInWorld)
+        && timerStopped && !current.isDead && lastLevelInWorld)
     {
+        vars.DebugOutput("Splitting on world complete");
         return true;
     }
 }

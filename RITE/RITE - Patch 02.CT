@@ -4,7 +4,7 @@
     <CheatEntry>
       <ID>0</ID>
       <Description>"Level + 13"</Description>
-      <LastState Value="5" RealAddress="00AC2DB8"/>
+      <LastState Value="14" RealAddress="00AC2DB8"/>
       <VariableType>4 Bytes</VariableType>
       <Address>RITE.exe+6C2DB8</Address>
     </CheatEntry>
@@ -41,7 +41,7 @@
     <CheatEntry>
       <ID>12</ID>
       <Description>"Control scheme?"</Description>
-      <LastState Value="000021C7" RealAddress="00881C2C"/>
+      <LastState Value="00002121" RealAddress="00881C2C"/>
       <ShowAsHex>1</ShowAsHex>
       <VariableType>4 Bytes</VariableType>
       <Address>RITE.exe+481C2C</Address>
@@ -49,7 +49,7 @@
     <CheatEntry>
       <ID>15</ID>
       <Description>"P -&gt; Death animation 1"</Description>
-      <LastState Value="0" RealAddress="03FC5340"/>
+      <LastState Value="0" RealAddress="03FAF340"/>
       <VariableType>Byte</VariableType>
       <Address>RITE.exe+4B0958</Address>
       <Offsets>
@@ -62,7 +62,7 @@
     <CheatEntry>
       <ID>16</ID>
       <Description>"P -&gt; Death animation 2"</Description>
-      <LastState Value="0" RealAddress="03FC534C"/>
+      <LastState Value="0" RealAddress="03FAF34C"/>
       <VariableType>Byte</VariableType>
       <Address>RITE.exe+4B0958</Address>
       <Offsets>
@@ -96,6 +96,32 @@
         <Offset>08</Offset>
         <Offset>44</Offset>
         <Offset>0C</Offset>
+        <Offset>58</Offset>
+        <Offset>0</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>44</ID>
+      <Description>"Timer * 2"</Description>
+      <LastState Value="0" RealAddress="03FB03BB"/>
+      <VariableType>Byte</VariableType>
+      <Address>RITE.exe+4B0958</Address>
+      <Offsets>
+        <Offset>3B</Offset>
+        <Offset>C</Offset>
+        <Offset>58</Offset>
+        <Offset>0</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>46</ID>
+      <Description>"Timer"</Description>
+      <LastState Value="0" RealAddress="03FB03C0"/>
+      <VariableType>Byte</VariableType>
+      <Address>RITE.exe+4B0958</Address>
+      <Offsets>
+        <Offset>40</Offset>
+        <Offset>C</Offset>
         <Offset>58</Offset>
         <Offset>0</Offset>
       </Offsets>
