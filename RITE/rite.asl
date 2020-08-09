@@ -62,8 +62,6 @@ init
         version = "Patch 02 (Steam)";
         break;
     }
- 
-    current.isDead = true;
 }
 
 exit
@@ -79,12 +77,12 @@ update
     // TODO: Is there a cleaner way to store persistent state? Vars maybe?
     current.isDead = ((IDictionary<String, object>)old).ContainsKey("isDead") 
         ? old.isDead 
-        : true;
+        : false;
 
     if (current.isDying && !old.isDying)
         current.isDead = true;
 
-    if (current.isDead && !current.menuActive && old.menuActive)
+    if (current.isDead && current.timerRunning && !old.timerRunning)
         current.isDead = false;
 }
 
@@ -99,12 +97,14 @@ start
     if (settings["startOnEnteringLevel"]
         && current.level > 13 && current.level != old.level)
     {
+        current.isDead = false;
         return true;
     }
 
     if (settings["startOnSpawning"]
         && timerStarted)
     {
+        current.isDead = false;
         return true;
     }
 }
