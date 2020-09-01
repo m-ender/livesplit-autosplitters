@@ -33,6 +33,11 @@ state("RITE", "Patch 02 (Steam)")
     // This is true while the timer is running (in particular, it's false before spawning,
     // during the pause menu, while dying, and after touching the door).
     bool timerRunning: "RITE.exe", 0x4B0958, 0x0, 0x58, 0xC, 0x40;
+    // Number of coins collected in the current level. Replacing the first offset 
+    // with 0x4B27F8 also works.
+    double coins : "RITE.exe", 0x4B2780, 0x2C, 0x10, 0x294, 0x0;
+    // Coins available in the current level.
+    double maxCoins : "RITE.exe", 0x4B2780, 0x2C, 0x10, 0x1E0, 0x0;
 }
 
 startup
@@ -42,6 +47,7 @@ startup
     settings.Add("splitOnEnteringLevel", false, "Split when entering a level");
     settings.Add("splitOnSpawning", false, "Split when spawning");
     settings.Add("splitOnLevelComplete", false, "Split when completing a level");
+        settings.Add("splitOnlyWith20Coins", false, "Only split if all coins were collected", "splitOnLevelComplete");
     settings.Add("splitOnWorldComplete", true, "Split when completing the last level of a world");
     settings.Add("resetOnWorld1Menu", false, "Reset when entering the world 1 level select");
     settings.Add("resetOnDeath", false, "Reset on death (useful for IL runs)");
@@ -140,8 +146,11 @@ split
     if (settings["splitOnLevelComplete"]
         && timerStopped && !current.isDead)
     {
-        vars.DebugOutput("Splitting on level complete");
-        return true;
+        if (!settings["splitOnlyWith20Coins"] || current.coins == current.maxCoins)
+        {
+            vars.DebugOutput("Splitting on level complete");
+            return true;
+        }
     }
     if (settings["splitOnWorldComplete"]
         && timerStopped && !current.isDead && lastLevelInWorld)
