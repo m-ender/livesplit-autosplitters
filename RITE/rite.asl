@@ -4,10 +4,6 @@ state("RITE", "Patch 01 (Steam)")
     // separate numbers. The levels start at 14 and appear to be all consecutively
     // numbered, so we can obtain the current level by subtracting 13 from this.
     int level : "RITE.exe", 0x6C2DB8;
-    // This is true on any screen where the player can't control the Nim, i.e. pause
-    // menu, door menu, level select, main menu etc. It's also briefly true while
-    // the menu background comes up during resets.
-    bool menuActive : "RITE.exe", 0x6C5160;
     // This is only 0 while the pause menu is open, and 1 otherwise.
     bool notPaused : "RITE.exe", 0x3FEA04;
     // This is only true during the death animation. Adding C  to the final offset 
@@ -21,10 +17,6 @@ state("RITE", "Patch 02 (Steam)")
     // separate numbers. The levels start at 14 and appear to be all consecutively
     // numbered, so we can obtain the current level by subtracting 13 from this.
     int level : "RITE.exe", 0x6C2DB8;
-    // This is true on any screen where the player can't control the Nim, i.e. pause
-    // menu, door menu, level select, main menu etc. It's also briefly true while
-    // the menu background comes up during resets.
-    bool menuActive : "RITE.exe", 0x6C5160;
     // This is only 0 while the pause menu is open, and 1 otherwise.
     bool notPaused : "RITE.exe", 0x3FEA04;
     // This is only true during the death animation. Adding C  to the final offset 
@@ -38,6 +30,27 @@ state("RITE", "Patch 02 (Steam)")
     double coins : "RITE.exe", 0x4B2780, 0x2C, 0x10, 0x294, 0x0;
     // Coins available in the current level.
     double maxCoins : "RITE.exe", 0x4B2780, 0x2C, 0x10, 0x1E0, 0x0;
+}
+
+state("RITE", "Patch 03 (Steam)")
+{
+    // The screen number. Splash screen, main menu, credits, each world etc all have
+    // separate numbers. The levels start at 14 and appear to be all consecutively
+    // numbered, so we can obtain the current level by subtracting 13 from this.
+    int level : "RITE.exe", 0x6EFE10;
+    // This is only 0 while the pause menu is open, and 1 otherwise.
+    bool notPaused : "RITE.exe", 0x4377F8;
+    // This is only true during the death animation. Adding C  to the final offset 
+    // gives another such byte.
+    bool isDying : "RITE.exe", 0x4DD8BC, 0x0, 0xF8, 0xC, 0x40;
+    // This is true while the timer is running (in particular, it's false before spawning,
+    // during the pause menu, while dying, and after touching the door).
+    bool timerRunning: "RITE.exe", 0x4DD8AC, 0x8, 0x0, 0x58, 0x5C0;
+    // Number of coins collected in the current level. Replacing the first offset 
+    // with 0x4B27F8 also works.
+    double coins : "RITE.exe", 0x4D2CAC, 0x370, 0x0, 0x2B0;
+    // Coins available in the current level.
+    double maxCoins : "RITE.exe", 0x4D2CAC, 0x2F0, 0x0, 0x280;
 }
 
 startup
@@ -61,11 +74,15 @@ startup
 init
 {
     int moduleSize = modules.First().ModuleMemorySize;
+    vars.DebugOutput(moduleSize.ToString());
     // TODO: distinguish between patch 01 and 02? Module size is the same.
     switch (moduleSize)
     {
     case 7593984:
         version = "Patch 02 (Steam)";
+        break;
+    case 7647232:
+        version = "Patch 03 (Steam)";
         break;
     }
 }
@@ -146,7 +163,7 @@ split
     if (settings["splitOnLevelComplete"]
         && timerStopped && !current.isDead)
     {
-        if (!settings["splitOnlyWith20Coins"] || current.coins == current.maxCoins)
+        if (!settings["splitOnlyWith20Coins"] || old.coins == current.maxCoins)
         {
             vars.DebugOutput("Splitting on level complete");
             return true;

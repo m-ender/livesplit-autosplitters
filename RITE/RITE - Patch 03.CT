@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="31">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>64</ID>
+      <Description>"Level + 13"</Description>
+      <LastState Value="14" RealAddress="00AEFE10"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>RITE.exe+6EFE10</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>65</ID>
+      <Description>"Not in pause menu"</Description>
+      <LastState Value="0" RealAddress="008377F8"/>
+      <VariableType>Byte</VariableType>
+      <Address>RITE.exe+4377F8</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>73</ID>
+      <Description>"Is death animation playing?"</Description>
+      <LastState Value="0" RealAddress="0DBDCC40"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"RITE.exe"+004DD8BC</Address>
+      <Offsets>
+        <Offset>40</Offset>
+        <Offset>C</Offset>
+        <Offset>F8</Offset>
+        <Offset>0</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>80</ID>
+      <Description>"Timer"</Description>
+      <LastState Value="0" RealAddress="0DBDDD40"/>
+      <VariableType>Byte</VariableType>
+      <Address>"RITE.exe"+004DD8AC</Address>
+      <Offsets>
+        <Offset>5C0</Offset>
+        <Offset>58</Offset>
+        <Offset>0</Offset>
+        <Offset>8</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>30</ID>
+      <Description>"X position"</Description>
+      <VariableType>Float</VariableType>
+      <Address>RITE.exe+4B0958</Address>
+      <Offsets>
+        <Offset>A0</Offset>
+        <Offset>08</Offset>
+        <Offset>44</Offset>
+        <Offset>0C</Offset>
+        <Offset>58</Offset>
+        <Offset>0</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>31</ID>
+      <Description>"Y position"</Description>
+      <VariableType>Float</VariableType>
+      <Address>RITE.exe+4B0958</Address>
+      <Offsets>
+        <Offset>A4</Offset>
+        <Offset>08</Offset>
+        <Offset>44</Offset>
+        <Offset>0C</Offset>
+        <Offset>58</Offset>
+        <Offset>0</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>50</ID>
+      <Description>"X velocity"</Description>
+      <VariableType>Double</VariableType>
+      <Address>RITE.exe+4B0958</Address>
+      <Offsets>
+        <Offset>0</Offset>
+        <Offset>168</Offset>
+        <Offset>10</Offset>
+        <Offset>2C</Offset>
+        <Offset>8</Offset>
+        <Offset>44</Offset>
+        <Offset>C</Offset>
+        <Offset>58</Offset>
+        <Offset>0</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>61</ID>
+      <Description>"X fractional velocity"</Description>
+      <VariableType>Double</VariableType>
+      <Address>RITE.exe+4B0958</Address>
+      <Offsets>
+        <Offset>0</Offset>
+        <Offset>0</Offset>
+        <Offset>10</Offset>
+        <Offset>2C</Offset>
+        <Offset>8</Offset>
+        <Offset>44</Offset>
+        <Offset>C</Offset>
+        <Offset>58</Offset>
+        <Offset>0</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>52</ID>
+      <Description>"Y velocity"</Description>
+      <VariableType>Double</VariableType>
+      <Address>RITE.exe+4B0958</Address>
+      <Offsets>
+        <Offset>0</Offset>
+        <Offset>B4</Offset>
+        <Offset>10</Offset>
+        <Offset>2C</Offset>
+        <Offset>8</Offset>
+        <Offset>44</Offset>
+        <Offset>C</Offset>
+        <Offset>58</Offset>
+        <Offset>0</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>60</ID>
+      <Description>"Y fractional velocity"</Description>
+      <VariableType>Double</VariableType>
+      <Address>RITE.exe+4B0958</Address>
+      <Offsets>
+        <Offset>0</Offset>
+        <Offset>24C</Offset>
+        <Offset>10</Offset>
+        <Offset>2C</Offset>
+        <Offset>8</Offset>
+        <Offset>44</Offset>
+        <Offset>C</Offset>
+        <Offset>58</Offset>
+        <Offset>0</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>70</ID>
+      <Description>"Coins"</Description>
+      <LastState Value="0" RealAddress="0D90D1C0"/>
+      <VariableType>Double</VariableType>
+      <Address>"RITE.exe"+004D2CAC</Address>
+      <Offsets>
+        <Offset>2B0</Offset>
+        <Offset>0</Offset>
+        <Offset>370</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>72</ID>
+      <Description>"Max coins"</Description>
+      <LastState Value="20" RealAddress="0D90D1B0"/>
+      <VariableType>Double</VariableType>
+      <Address>"RITE.exe"+004D2CAC</Address>
+      <Offsets>
+        <Offset>280</Offset>
+        <Offset>0</Offset>
+        <Offset>2F0</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>81</ID>
+      <Description>"Frame count"</Description>
+      <LastState Value="619" RealAddress="0D90D0F0"/>
+      <VariableType>Double</VariableType>
+      <Address>"RITE.exe"+004DF9A4</Address>
+      <Offsets>
+        <Offset>0</Offset>
+        <Offset>C0</Offset>
+        <Offset>10</Offset>
+        <Offset>2C</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>63</ID>
+      <Description>"Image Index: first ccw spikey"</Description>
+      <VariableType>Float</VariableType>
+      <Address>RITE.exe+4B0958</Address>
+      <Offsets>
+        <Offset>84</Offset>
+        <Offset>8</Offset>
+        <Offset>38</Offset>
+        <Offset>C</Offset>
+        <Offset>150</Offset>
+        <Offset>0</Offset>
+      </Offsets>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <Comments>Info about this table:
+</Comments>
+</CheatTable>
