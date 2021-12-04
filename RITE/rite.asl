@@ -37,20 +37,19 @@ state("RITE", "Patch 03 (Steam)")
     // The screen number. Splash screen, main menu, credits, each world etc all have
     // separate numbers. The levels start at 14 and appear to be all consecutively
     // numbered, so we can obtain the current level by subtracting 13 from this.
-    int level : "RITE.exe", 0x6EFE10;
-    // This is only 0 while the pause menu is open, and 1 otherwise.
-    bool notPaused : "RITE.exe", 0x4377F8;
-    // This is only true during the death animation. Adding C  to the final offset 
-    // gives another such byte.
-    bool isDying : "RITE.exe", 0x4DD8BC, 0x0, 0xF8, 0xC, 0x40;
+    int level : "RITE.exe", 0x12C680, 0x4;
+    // This is only 1 while the pause menu is open, and 0 otherwise.
+    // Couldn't find notPaused value directly, so this is used to determine notPaused in update.
+    bool paused : "RITE.exe", 0x6F6E38, 0x94;
+    // This is only true during the death animation.
+    bool isDying : "RITE.exe", 0x4E48F4, 0x0, 0x12C, 0x2C, 0xAC0;
     // This is true while the timer is running (in particular, it's false before spawning,
     // during the pause menu, while dying, and after touching the door).
-    bool timerRunning: "RITE.exe", 0x4DD8AC, 0x8, 0x0, 0x58, 0x5C0;
-    // Number of coins collected in the current level. Replacing the first offset 
-    // with 0x4B27F8 also works.
-    double coins : "RITE.exe", 0x4D2CAC, 0x370, 0x0, 0x2B0;
+    bool timerRunning: "RITE.exe", 0x4E48E4, 0x120, 0x40;
+    // Number of coins collected in the current level.
+    double coins : "RITE.exe", 0x704B88, 0x30, 0xFC, 0x160;
     // Coins available in the current level.
-    double maxCoins : "RITE.exe", 0x4D2CAC, 0x2F0, 0x0, 0x280;
+    double maxCoins : "RITE.exe", 0x704B88, 0x30, 0x45C, 0x130;
 }
 
 startup
@@ -81,7 +80,7 @@ init
     case 7593984:
         version = "Patch 02 (Steam)";
         break;
-    case 7647232:
+    case 7675904:
         version = "Patch 03 (Steam)";
         break;
     }
@@ -101,6 +100,10 @@ update
     current.isDead = ((IDictionary<String, object>)old).ContainsKey("isDead") 
         ? old.isDead 
         : false;
+
+    // Sets notPaused using paused for Patch 03.
+    if (((IDictionary<String, object>)current).ContainsKey("paused"))
+        current.notPaused = !current.paused;
 
     if (current.isDying && !old.isDying)
         current.isDead = true;
