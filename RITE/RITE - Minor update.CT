@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>82</ID>
+      <Description>"Level + 13"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>RITE.exe+8B27C8</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>155</ID>
+      <Description>"In pause menu"</Description>
+      <VariableType>Byte</VariableType>
+      <Address>RITE.exe+5F4524</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>147</ID>
+      <Description>"Not in pause menu"</Description>
+      <VariableType>Byte</VariableType>
+      <Address>"RITE.exe"+006A1C98</Address>
+      <Offsets>
+        <Offset>E60</Offset>
+        <Offset>50</Offset>
+        <Offset>500</Offset>
+        <Offset>308</Offset>
+        <Offset>308</Offset>
+        <Offset>40</Offset>
+        <Offset>0</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>94</ID>
+      <Description>"Is death animation playing?"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"RITE.exe"+0069FA98</Address>
+      <Offsets>
+        <Offset>878</Offset>
+        <Offset>18</Offset>
+        <Offset>210</Offset>
+        <Offset>0</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>112</ID>
+      <Description>"Is timer running"</Description>
+      <VariableType>Byte</VariableType>
+      <Address>"RITE.exe"+0069FA98</Address>
+      <Offsets>
+        <Offset>78</Offset>
+        <Offset>18</Offset>
+        <Offset>1B0</Offset>
+        <Offset>0</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>83</ID>
+      <Description>"Coins"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Double</VariableType>
+      <Address>"RITE.exe"+008C2008</Address>
+      <Offsets>
+        <Offset>130</Offset>
+        <Offset>F0</Offset>
+        <Offset>30</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>91</ID>
+      <Description>"Max coins"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Double</VariableType>
+      <Address>"RITE.exe"+008C2008</Address>
+      <Offsets>
+        <Offset>140</Offset>
+        <Offset>F0</Offset>
+        <Offset>30</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>105</ID>
+      <Description>"Frame count"</Description>
+      <VariableType>Double</VariableType>
+      <Address>"RITE.exe"+008C82F0</Address>
+      <Offsets>
+        <Offset>60</Offset>
+        <Offset>2F0</Offset>
+        <Offset>178</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>129</ID>
+      <Description>"X position"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Float</VariableType>
+      <Address>"RITE.exe"+0069FA98</Address>
+      <Offsets>
+        <Offset>E8</Offset>
+        <Offset>10</Offset>
+        <Offset>68</Offset>
+        <Offset>78</Offset>
+        <Offset>1C0</Offset>
+        <Offset>0</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>130</ID>
+      <Description>"Y position"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Float</VariableType>
+      <Address>"RITE.exe"+0069FA98</Address>
+      <Offsets>
+        <Offset>EC</Offset>
+        <Offset>10</Offset>
+        <Offset>68</Offset>
+        <Offset>78</Offset>
+        <Offset>1C0</Offset>
+        <Offset>0</Offset>
+      </Offsets>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <Comments>Info about this table:
+</Comments>
+</CheatTable>

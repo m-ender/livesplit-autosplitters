@@ -52,6 +52,26 @@ state("RITE", "Patch 03 (Steam)")
     double maxCoins : "RITE.exe", 0x704B88, 0x30, 0x45C, 0x130;
 }
 
+state("RITE", "Minor update after Patch 03 (Steam)")
+{
+    // The screen number. Splash screen, main menu, credits, each world etc all have
+    // separate numbers. The levels start at 14 and appear to be all consecutively
+    // numbered, so we can obtain the current level by subtracting 13 from this.
+    int level : "RITE.exe", 0x8B27C8;
+    // This is only 1 while the pause menu is open, and 0 otherwise.
+    // Couldn't find notPaused value directly, so this is used to determine notPaused in update.
+    bool paused : "RITE.exe", 0x5F4524;
+    // This is only true during the death animation.
+    bool isDying : "RITE.exe", 0x0069FA98, 0x0, 0x210, 0x18, 0x878;
+    // This is true while the timer is running (in particular, it's false before spawning,
+    // during the pause menu, while dying, and after touching the door).
+    bool timerRunning: "RITE.exe", 0x0069FA98, 0x0, 0x1B0, 0x18, 0x78;
+    // Number of coins collected in the current level.
+    double coins : "RITE.exe", 0x008C2008, 0x30, 0xF0, 0x130;
+    // Coins available in the current level.
+    double maxCoins : "RITE.exe", 0x008C2008, 0x30, 0xF0, 0x140;
+}
+
 startup
 {
     settings.Add("startOnEnteringLevel", false, "Start when entering a level");
@@ -82,6 +102,9 @@ init
         break;
     case 7675904:
         version = "Patch 03 (Steam)";
+        break;
+    case 9789440:
+        version = "Minor update after Patch 03 (Steam)";
         break;
     }
 }
